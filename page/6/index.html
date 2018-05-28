@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-3.find命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-1.linux目录结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/13/2018-01-13-3.find命令/" itemprop="url">3.find命令</a></h1>
+                <a class="post-title-link" href="/2018/01/13/2018-01-13-1.linux目录结构/" itemprop="url">1.linux目录结构</a></h1>
         
 
         <div class="post-meta">
@@ -397,347 +397,52 @@
       
         
           
-          1.从根目录查找大于50MB的文件，并按大小列表显示前10个find / -printf &quot;%k %p\n&quot;|sort -g -k 1,1|\awk {if($1&gt;50000) print $1/1024 &quot;MB&quot; &quot; &quot; $2}|t
+          
+
+
+目录
+说明
+demo
+
+
+
+
+/
+根
+
+
+/bin
+用户二进制文件
+ps,grep,ping,ls
+
+
+/sbin
+系统二进制文件
+
+
+/etc
+配置文件
+
+
+/dev
+设备文件
+终端、USB
+
+
+/proc
+进程信息
+
+
+/var
+变量文件，内容增长的文件
+系统日志、数据、电子邮件
+
+
+/t
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/2018-01-13-3.find命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-4.grep/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/13/2018-01-13-4.grep/" itemprop="url">4.grep</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T00:00:00+08:00">
-                2018-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.基础正则表达式grep -[acinv] 搜索内容串 filename
-
--a 以文本文件方式搜索
-
--c 计算找到的符合行的次数
-
--i 忽略大小写
-
--n 顺便输出行号
-
--v 反向选择，即找 没有搜索字符串的行
-2.利用[]搜索集合字符-A是显示匹配后和它后面的n行。
-
--B是显示匹配行和
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/2018-01-13-4.grep/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-13.统计当前文件夹大小/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/13/2018-01-13-13.统计当前文件夹大小/" itemprop="url">13.统计当前文件夹大小</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T00:00:00+08:00">
-                2018-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.统计当前文件夹大小，并按大小排序du -sh * |sort -n
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/2018-01-13-13.统计当前文件夹大小/#more" rel="contents">
+            <a class="btn" href="/2018/01/13/2018-01-13-1.linux目录结构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -956,7 +661,7 @@ awk $2## 20151
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-12.文件管理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-8.tar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -975,7 +680,7 @@ awk $2## 20151
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/13/2018-01-13-12.文件管理/" itemprop="url">12.文件管理</a></h1>
+                <a class="post-title-link" href="/2018/01/13/2018-01-13-8.tar/" itemprop="url">8.tar</a></h1>
         
 
         <div class="post-meta">
@@ -1058,16 +763,14 @@ awk $2## 20151
       
         
           
-          ls 目录 | wc -l
-1.目录个数find ./ -type d | wc -l
-2.文件个数find ./ -type f | wc -l
-3.查看文件夹大小比如查看home目录的大小：du -sh /home
-4.查看版本cat /etc/redhat-release
-5.Linux下修改
-          ...
+          1)压缩tar -zcvf /tmp/etc.tar.gz /etc
+2)解压到压缩目录tar -zxvf /tmp/etc.tar.gz
+3.指定目录tar -cvf test.tgz test/ --exclude dir1
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/13/2018-01-13-12.文件管理/#more" rel="contents">
+            <a class="btn" href="/2018/01/13/2018-01-13-8.tar/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1122,7 +825,7 @@ awk $2## 20151
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/2018-01-12-DeltaWalker/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/2018-01-13-5.sed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -1141,7 +844,7 @@ awk $2## 20151
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/12/2018-01-12-DeltaWalker/" itemprop="url">DeltaWalker</a></h1>
+                <a class="post-title-link" href="/2018/01/13/2018-01-13-5.sed/" itemprop="url">5.sed</a></h1>
         
 
         <div class="post-meta">
@@ -1153,8 +856,8 @@ awk $2## 20151
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T00:00:00+08:00">
-                2018-01-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T00:00:00+08:00">
+                2018-01-13
               </time>
             
 
@@ -1224,12 +927,14 @@ awk $2## 20151
       
         
           
-          DeltaWalker在你的home目录下（我的是linux,就是～目录，WINDOWS应该是USER那个目录吧，这个没去找过），有个叫.XXXXXX.dwk的文件，这里的X就是字母和数字，这个是保存注册信息的，删除他等于重置了注册信息，打开软件时就不报那个了。
-
-          
+          1.将 statement 前面的部分予以删除sed -i s/^.*statement://g ./0619
+2.将 message 后面的部分予以删除sed -i s/message:.*$//g ./0619
+3.替换sed -i s/&quot;//g 0619
+4.删除包含sed -i /
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/01/12/2018-01-12-DeltaWalker/#more" rel="contents">
+            <a class="btn" href="/2018/01/13/2018-01-13-5.sed/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1393,6 +1098,168 @@ http://idea.ibdyr.com
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/12/2018-01-12-DataGrip/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/2018-01-12-DeltaWalker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/12/2018-01-12-DeltaWalker/" itemprop="url">DeltaWalker</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T00:00:00+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          DeltaWalker在你的home目录下（我的是linux,就是～目录，WINDOWS应该是USER那个目录吧，这个没去找过），有个叫.XXXXXX.dwk的文件，这里的X就是字母和数字，这个是保存注册信息的，删除他等于重置了注册信息，打开软件时就不报那个了。
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/12/2018-01-12-DeltaWalker/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1771,6 +1638,171 @@ http://idea.ibdyr.com
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/2018-01-11-tomcat连接超时/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/11/2018-01-11-tomcat连接超时/" itemprop="url">tomcat连接超时</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T00:00:00+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          tomcat连接超时tomcat7的请求不会超时，tomcat7不会主动断开跟客户端的链接。
+connectionTimeout默认值 60s
+在接受连接之后等待的请求URI的毫秒数。
+标准server.xml将其设置为20000（即20秒），-1来表示无（即无限）超时。
+keepAliveTime
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/11/2018-01-11-tomcat连接超时/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/2018-01-11-nginx跨域请求/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1976,7 +2008,7 @@ server {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">390</span>
+                  <span class="site-state-item-count">389</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
