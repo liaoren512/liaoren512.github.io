@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="freeswitch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="搁浅丶岁月的变迁" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="SIP协议 是现代VoIP通信的一个主要协议  是Freeswitch支持的一个核心协议 1.基本概念Sofia-SIP:      mod_sofia模块中实现的,使用了比较成熟的开源SIP协议栈Sofia-SIP  Endpoint:      使用不同的控制协议跟其他的Endpoint通话  mod_sofia:      实现了SIP中的注册服务器, 重定向服务器, 媒体服务器, 呈现服务">
+<meta name="keywords" content="freeswitch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.sip模块">
+<meta property="og:url" content="http://yoursite.com/2017/12/23/2017-12-23-9.sip模块/index.html">
+<meta property="og:site_name" content="搁浅丶岁月的变迁">
+<meta property="og:description" content="SIP协议 是现代VoIP通信的一个主要协议  是Freeswitch支持的一个核心协议 1.基本概念Sofia-SIP:      mod_sofia模块中实现的,使用了比较成熟的开源SIP协议栈Sofia-SIP  Endpoint:      使用不同的控制协议跟其他的Endpoint通话  mod_sofia:      实现了SIP中的注册服务器, 重定向服务器, 媒体服务器, 呈现服务">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-28T08:47:44.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="9.sip模块">
+<meta name="twitter:description" content="SIP协议 是现代VoIP通信的一个主要协议  是Freeswitch支持的一个核心协议 1.基本概念Sofia-SIP:      mod_sofia模块中实现的,使用了比较成熟的开源SIP协议栈Sofia-SIP  Endpoint:      使用不同的控制协议跟其他的Endpoint通话  mod_sofia:      实现了SIP中的注册服务器, 重定向服务器, 媒体服务器, 呈现服务">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/23/2017-12-23-9.sip模块/"/>
+
+
+
+
+
+  <title>9.sip模块 | 搁浅丶岁月的变迁</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/liaoren512"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">搁浅丶岁月的变迁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有虽败犹荣，只有成王败寇。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-9.sip模块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">9.sip模块</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SIP协议</p>
+<pre><code>是现代VoIP通信的一个主要协议
+
+是Freeswitch支持的一个核心协议
+</code></pre><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h2><pre><code>Sofia-SIP:
+
+    mod_sofia模块中实现的,使用了比较成熟的开源SIP协议栈Sofia-SIP
+
+Endpoint:
+
+    使用不同的控制协议跟其他的Endpoint通话
+
+mod_sofia:
+
+    实现了SIP中的注册服务器, 重定向服务器, 媒体服务器, 呈现服务器等
+
+SIP Profile:
+
+    相当于SIPUA,配置一个UA的行为, 有多个SIP Profile,每个SIP Profile都可以监听不同的IOP地址和端口
+
+Gateway:
+
+    网关,定义一个远端的SIP服务器,使Freeswitch可以与其他服务器通信,
+
+    Freeswitch可以作为一个SIP客户端向远端的网关进行注册,或作为中继
+
+本地SIP用户:
+
+    SIP客户端向Freeswitch注册,Freeswitch通过用户目录中的配置信息对注册用户进行鉴权
+
+来话,去话
+
+    如果Alice向Bob打电话,
+
+    Alice首先向Freeswitch发起呼叫,对Freeswitch而言,这路通话是来话
+
+    Freeswitch再呼叫B,这路通话称为去话
+</code></pre><h2 id="2-Sofia配置文件"><a href="#2-Sofia配置文件" class="headerlink" title="2.Sofia配置文件"></a>2.Sofia配置文件</h2><pre><code>conf/autoload_configs/sofia.conf.xml
+
+Sofia支持多个Profile, 每个Profile相当于一个SIP UA,在启动后它会监听一个&quot;IP地址:端口&quot;对
+
+1） internel
+
+    internel.xml定义了一个Profile, 它里面有大量的配置参数,
+
+    由于Sofia Profile的参数比较多,因此默认把不同的Profile配置存放在单独的文件中
+
+        一个Profile,可以配置多个网关,网关在gateways标签定义
+
+        &lt;gateways&gt;
+
+            &lt;X-PRE-PROCESS cmd=&quot;include&quot; data=&quot;internal/*.xml&quot;/&gt;
+
+        &lt;/gateways&gt;
+
+    域Domain,可以是一个IP或DNS域名
+
+        在默认的配置文件中,vars.xml中定义了名为domain的全局变量,默认追来自local_ip_v4
+
+    Profile的几个重要参数
+
+        Sofia的Profile有很多可配置参数,可以影响某一Profile所代表的SIPUA的行为,
+
+        对于来话而言, 所有到达某一Profile的呼叫都会进行统一处理,下面我们就来说一下Profile中的一些主要参数
+
+        inbound-bypass-media
+
+            是否启用&quot;媒体绕过&quot;模式
+
+            &lt;param name=&quot;inbound-bypass-media&quot; value=&quot;true&quot;/&gt;
+
+2）external
+
+    auth-call
+
+        在internal默认是true, 在external默认是false
+
+        也就是说发送到5060端口需要授权, 发往5080不需要授权
+
+
+
+3） Gateway
+
+    Freeswitch通过外部网关向外打电话, 这个外部网关就称为Gateway
+
+    在external中,我们看到它使用预处理指令将external所有的XML配置文件都装入到该Profile的agteways标签
+
+    &lt;gateways&gt;
+
+        &lt;X-PRE-PROCESS cmd=&quot;include&quot; data=&quot;external/*.xml&quot;/&gt;
+
+    &lt;/gateways&gt;
+
+    这样的好处是,可以把每个网关配置写到不同的文件中,默认的配置包含了一个example.xml
+
+    添加一个新网关只需要在external目录新建一个XML文件,
+
+    &lt;gateway name=&quot;gw1&quot;&gt;
+
+        &lt;param name=&quot;realm&quot; value=&quot;服务器地址&quot;/&gt;
+
+        &lt;param name=&quot;username&quot; value=&quot;用户名&quot;/&gt;
+
+        &lt;param name=&quot;password&quot; value=&quot;密码&quot;/&gt;
+
+    &lt;/gateway&gt;
+</code></pre><h2 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3.常用命令"></a>3.常用命令</h2><pre><code>mod_sofia提供了一个API命令, sofia
+
+sofia status 会列出sofia的运行状态
+
+1） 状态相关命令
+
+    列出当前的运行状态
+
+        sofia status
+
+    列出某个Profile的状态
+
+        sofia status profile internal
+
+    列出某个Profile上所有已注册用户
+
+        sofia status profile internal reg
+
+    过滤某些符合条件的用户
+
+        sofia status profile internal reg 1000
+
+    列出某个特定用户
+
+        sofia status profile internal user 1000
+
+    列出网关状态
+
+        sofia status gateway gw1
+
+2） Profile相关命令
+
+    启动某个Profile
+
+        sofia profile internal start
+
+    停止
+
+        sofia profile internal stop
+
+    重启
+
+        sofia profile internal restart
+
+    修改了某个Profile的某个参数,不需要重启,
+
+    可以重新读取配置参数
+
+        sofia profile internal rescan
+
+    开启Profile的SIP跟踪功能抓SIP包
+
+        sofia profile internal siptrace on
+
+    清理注册的用户
+
+        sofia profile internal flush_inbound_reg 100@192.168.1.7
+
+        flush_inbound_reg,Freeswitch只是简单的清理本地数据库中用户的注册信息,
+
+        无法防止客户端重新注册,如果不想让客户端再注册,应该给用户修改密码,或修改防火墙
+
+
+
+3）SIP Capture
+
+    Freeswitch内置了Homer Capture Agent 用于SIP抓包
+
+    Homer由Capture Agent, Capture Node, webHomer三部分组成
+
+        Captuer Agent运行与Freeswitch内部, 用于将收到的SIP包进行封装并发送到远端Capture Node上
+
+        Capture Node 收到封装后的SIP包,进行分析并将分析结果存储到数据库中
+
+        技术人员使用webHomer在浏览器查看各种统计和分析结果
+
+    配置Captcher Node地址, sofia.conf.xml
+
+        &lt;param name=&quot;capture-server&quot; value=&quot;udp:192.168.0.100:6060&quot;/&gt;
+
+    配置该功能默认情况下载Profile加载时打开还是关闭
+
+        &lt;param name=&quot;sip-capture&quot; value=&quot;yes&quot;/&gt;
+
+        也可以在运行阶段通过命令动态开关
+
+            sofia profile internal capture on
+
+            sofia profile internal capture off
+
+4）global相关
+
+    用户经常搞不清楚对哪个Profile进行抓包, Freeswitch加入了global参数,使siptrace对所有Profile有效
+
+    打开,关闭全局SIP消息跟踪
+
+        sofia global siptrace on
+
+        sofia global siptrace off
+
+    打开,关闭全局SIP捕获
+
+        sofia global capture on
+
+        sofia global capture off
+
+5）debug相关
+
+    协议栈更底层的原因引起问题, 由于受到或发送非法的消息导致协议栈出错, 可能会导致消息丢失
+
+    这种情况下,Freeswitch日志及SIP跟踪也查不到原因,需要打开更低级别的调试器
+
+        sofia loglevel all 9
+
+        控制台上打印日志,级别0~9,如果你对sofia比较熟悉,也可以开相关模块的日志
+
+        sofia loglevel nua 9
+
+    默认Sofia的日志级别是console
+
+        直接打印相关信息到控制台,而不会写到日志文件中
+
+        如果需要写到日志文件中,可以为这些日志指定一个级别
+
+            sofia tracelevel debug
+
+            sofia tracelevel notice
+
+        关闭这些调试
+
+            sofia loglevel all 0
+
+6）其他命令
+
+    返回注册用户的username
+
+        sofia_username_of 1000@192.168.1.123
+
+    返回注册用户的联系地址
+
+        sofia_contact 1000@192.168.1.123
+
+    在允许多点注册的情况下(开启multiple-registrations), 计算有多少客户端注册了
+
+        sofia_count_reg 1000@192.168.1.123
+
+    返回其他服务器的服务地址和端口号
+
+        sofia_dig 192.168.1.123
+
+    显示Presence数据
+
+        sofia_presence_data status 1000@192.168.1.123
+
+    列出用户的user_agent信息
+
+        sofia_presence_data user_agent 1000@192.168.1.123
+
+7）其他
+
+    修改IP地址和端口号相关的参数,一般需要重启, 中断现有通话
+</code></pre><h2 id="4-NAT穿越"><a href="#4-NAT穿越" class="headerlink" title="4.NAT穿越"></a>4.NAT穿越</h2><pre><code>用户网络环境可能是五花八门, 不可避免的遇到NAT问题,
+
+适当解决在NAT网络环境下的内,外网通信问题,就称为NAT穿越
+
+
+
+NAT, Network Address Translation(网络地址转换), 克服IPv4网络地址不足出现的技术
+
+    规定一些私有的IP地址,它们形成一个私有网络,称为内部网,当需要与外界IP通信时, 通过路由器提供的NAT
+
+    转换成一个合法的外网IP与外界通信,不同内网彼此独立,因而可以服用这些私有IP地址
+
+SIP一般用UDP承载,UDP无连接协议,在NAT穿越方面就更加困难,
+
+    更复杂的是,媒体数据在RTP包传递,它与SIP路径不同,
+
+典型NAT结构
+
+    路由器有两个网络接口,一个用于连接外网,IP是1.2.3.4,一个用于连接内网,IP是192.168.0.1
+
+    它们把192.168.0.1作为网关, 即所有与外网的通信都需要经过192.168.0.1转发,
+
+    如果内网主机要与外界通信,路由器会将内网主机请求转成外网IP地址,不管哪个内网主机与外界通信,看起来都是1.2.3.4发出的,
+
+    路由器会维护一个地址与内网主机间的映射关系,保证回来的IP能达到相应的主机,
+
+    这个映射关系好像在NAT设备上打洞,该洞是有生命周期的,一段时间没有数据通话,洞会自动消失
+
+1）NAT的类型
+
+    静态NAT
+
+        每个主机都永久映射成外部网络中某个合法地址
+
+    动态NAT
+
+        动态分配映射到网络内部
+
+    网络地址端口转换 NAPT
+
+        把内部地址映射到外部网络一个IP地址的不同端口上
+
+        前两种类型不能节省IP地址,我们就不讨论了,网络地址端口转换是常用的方式
+
+
+
+....
+
+3）NAT是怎么影响SIP/RTP通信的
+
+    假设SIP话机的IP地址是192.168.0.2, 路由器外网IP是1.2.3.4,Freeswitch的IP是1.2.3.5
+
+    如果话机向Freeswitch注册,它将发送以下REGISTER消息
+
+        REGISTER 1000@1.2.3.5 SIP/2.0
+
+        Contact: 1000@192.168.0.2:5060
+
+    由于Freeswitch收到请求后会认为该消息是1.2.3.4:5060发出
+
+    这是如果有人呼叫1000就发现电话打不通
+
+    如果SIP走通后,RTP不通, 就出现电话打通但没有声音的情况(或单通)
+
+    Freeswitch是无法向192.168.0.2发送RTP包的,这个问题可以由客户端通过STUN解决,也可以由Freeswitch解决,
+
+    Freeswitch在收到第一个RTP包时,得知该RTP对应的外网IP和端口号,以后所有的RTP流发送到这个外网上,就能听到声音了.
+</code></pre><h2 id="5-小结"><a href="#5-小结" class="headerlink" title="5.小结"></a>5.小结</h2><pre><code>NAT无处不在, 所有人都可能遇到,如果遇到NAT问题, 那么尝试修改参数看能否解决
+
+解决NAT问题比较有效的方法是抓包分析,比较
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <!--<a href="/tags/freeswitch/" rel="tag"># freeswitch</a>-->
+            <a href="/tags/freeswitch/" rel="tag"><i class="fa fa-tag"></i> freeswitch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/2017-12-23-5.freeswitch架构/" rel="next" title="5.freeswitch架构">
+                <i class="fa fa-chevron-left"></i> 5.freeswitch架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/25/2017-12-25-Android Studio显示行数/" rel="prev" title="Android Studio显示行数">
+                Android Studio显示行数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/ichgo.jpg"
+                alt="廖壬" />
+            
+              <p class="site-author-name" itemprop="name">廖壬</p>
+              <p class="site-description motion-element" itemprop="description">Learn to choose, to forsake, to endure loneliness, to resist temptation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">390</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaoren512" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liaoren512@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/5281757990/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本概念"><span class="nav-number">1.</span> <span class="nav-text">1.基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Sofia配置文件"><span class="nav-number">2.</span> <span class="nav-text">2.Sofia配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常用命令"><span class="nav-number">3.</span> <span class="nav-text">3.常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-NAT穿越"><span class="nav-number">4.</span> <span class="nav-text">4.NAT穿越</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-小结"><span class="nav-number">5.</span> <span class="nav-text">5.小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廖壬</span>
+
+  
+</div>
+
+<!-- 在网站底部加上访问量-->
+<!--<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>-->
+<!--pv的方式，单个用户连续点击n篇文章，记录n次访问量-->
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

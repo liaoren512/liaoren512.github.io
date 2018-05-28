@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="freeswitch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="搁浅丶岁月的变迁" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.什么是FreeSWITCH?1.1.FreeSWITCH概念  开源的电话交换平台.      跨平台      可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能      免费      支持SIP,H323,Skype,Google      Talk等多种通信协议  1.2.FreeSWITCH的功能      国外,很多ISP和运营商把它作为关键的软交换设备,处理成千上万的并发通">
+<meta name="keywords" content="freeswitch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.初识freeswitch">
+<meta property="og:url" content="http://yoursite.com/2017/12/23/2017-12-23-3.初识freeswitch/index.html">
+<meta property="og:site_name" content="搁浅丶岁月的变迁">
+<meta property="og:description" content="1.什么是FreeSWITCH?1.1.FreeSWITCH概念  开源的电话交换平台.      跨平台      可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能      免费      支持SIP,H323,Skype,Google      Talk等多种通信协议  1.2.FreeSWITCH的功能      国外,很多ISP和运营商把它作为关键的软交换设备,处理成千上万的并发通">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-28T08:47:56.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3.初识freeswitch">
+<meta name="twitter:description" content="1.什么是FreeSWITCH?1.1.FreeSWITCH概念  开源的电话交换平台.      跨平台      可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能      免费      支持SIP,H323,Skype,Google      Talk等多种通信协议  1.2.FreeSWITCH的功能      国外,很多ISP和运营商把它作为关键的软交换设备,处理成千上万的并发通">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/23/2017-12-23-3.初识freeswitch/"/>
+
+
+
+
+
+  <title>3.初识freeswitch | 搁浅丶岁月的变迁</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/liaoren512"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">搁浅丶岁月的变迁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有虽败犹荣，只有成王败寇。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-3.初识freeswitch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">3.初识freeswitch</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-什么是FreeSWITCH"><a href="#1-什么是FreeSWITCH" class="headerlink" title="1.什么是FreeSWITCH?"></a>1.什么是FreeSWITCH?</h2><pre><code>1.1.FreeSWITCH概念
+
+开源的电话交换平台.
+
+    跨平台
+
+    可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能
+
+    免费
+
+    支持SIP,H323,Skype,Google
+
+    Talk等多种通信协议
+
+1.2.FreeSWITCH的功能
+
+    国外,很多ISP和运营商把它作为关键的软交换设备,处理成千上万的并发通话,也用于呼叫中心
+
+    国内,广泛用户呼叫中心,指挥调度平台,从这方面讲,它是传统电话交换系统良好的替代品.
+
+        1)典型功能
+
+        在线计费,预付费
+
+        电话路由
+
+        语音转码
+
+        多点会议
+
+        IVR,语音通知服务器
+
+        ...
+</code></pre><h2 id="2-快速体验"><a href="#2-快速体验" class="headerlink" title="2.快速体验"></a>2.快速体验</h2><pre><code>FreeSWITCH默认的配置是一个SOHOPBX(家用电话小交换机)
+
+2.1.安装基本FreeSWITCH系统
+
+    1)版本简介
+
+        版本号有3部分构成,以点隔开
+
+        第1位是主版本号,第2位是次版本号,第3位是补丁及更新的标志位,从第2位看,偶数的版本是稳定版,奇数位开发版.
+
+    2)安装FreeSWTICH
+</code></pre><h2 id="3-连接SIP电话"><a href="#3-连接SIP电话" class="headerlink" title="3.连接SIP电话"></a>3.连接SIP电话</h2><pre><code>FreeSWITCH最典型的应用是作为一个服务器,并用电话客户端软件连接到它
+
+3.1 SIP软电话:常用的X-Lite和Zoiper
+
+3.2 FreeSWITCH默认设置了1000~1019共20个用户,你可以选择一个用户配置
+
+    1.在X-Lite上右击,选&quot;Sip Account Settings..&quot;,点击Add添加账号,填入一下参数
+
+        Display Name: 1000
+
+        User name: 1000
+
+        Password: 1234
+
+        Authorization user name: 1000
+
+        Domain: 你的ip
+
+    2.点击OK,注册成功会显示Ready.Your user-names is 1000
+
+        输入“9664”按回车
+
+3.3 配置FreeSwitch
+
+    vars.xml     一些常用变了
+
+    switch.xml     主配置文件，用include装入其他文件
+
+    autoload_configs    存放自动加载的配置文件
+
+        modules.conf.xml     配置freeswtich启动时自动装载哪些模块
+
+        *.xml                 每个模块都有一个配置文件
+
+    chatplan     聊天计划
+
+    dialplan    拨号计划
+
+        default.xml     内部用户路由
+
+        public.xml         外部来话路由
+
+    directory     用户目录
+
+        default         默认用户目录配置
+
+            *.xml         sip用户，每个用户一个文件
+
+    ivr——menus    IVR菜单
+
+    jingle_profiles     连接Google Talk
+
+    lang                 多语言支持
+
+        en                 英语
+
+        fr                 法语
+
+        mrcp_profiles   MRCP,第三方语音合成，识别
+
+        sip_profiles     SIP配置文件
+
+        internal.xml     SIP-UA,监听本地IP及5060
+
+        external.xml     SIP-UA,外部连接端口5080
+
+    skinny_profiles     思科SCCP协议话机的配置文件
+
+
+
+3.4 添加一个用户
+
+    1.在conf/directory/default/中增加一个用户配置文件
+
+        effective_caller_id_name: Jack
+
+    2.修改拨号计划使其他用户可以呼叫它
+
+        conf/dialplan/default.xml
+
+        找到&lt;condition field=&quot;destination_number&quot; expression=&quot;^(01[01][0-9])$&quot;&gt;
+
+        ^(01[01][0-9])$,匹配1000~1019,因此我们修改之后就可以匹配更多
+
+    3.重新加载配置
+
+        启动fs_cli,执行reloadxml命令,重新加载配置文件
+
+    4.振铃音
+
+        conf/autoload_configs/portaudio.conf.xml
+
+            &lt;parm name=&quot;ring-file&quot; value=&quot;/home/your_name/your_ring_file.wav&quot; /&gt;
+
+    5.显示多少用户已注册
+
+        sofia status profile internal reg
+
+3.5 拨打外部电话
+
+    1.添加网关
+
+        conf/sip_profiles/external/创建XML文件
+
+            &lt;gateway name=&quot;gw1&quot;&gt;
+
+                &lt;param name=&quot;realm&quot; value=&quot;SIP 服务器地址，可以是IP或IP:端口号&quot; /&gt;
+
+                &lt;param name=&quot;username&quot; value=&quot;SIP用户名&quot; /&gt;
+
+                &lt;param name=&quot;password&quot; value=&quot;密码&quot; /&gt;
+
+            &lt;/gateway&gt;
+
+    2.重启，查看网关状态
+
+        sofia profile external rescan
+
+        sofia status
+
+        如果显示gw1状态是REGED，表明正确注册到网关了
+
+    3.测试一下是否工作
+
+        originate sofia/gateway/gw1/xxxxx &amp;echo
+
+        呼叫xxxxx手机号
+
+
+
+3.5.1 从某一分机呼出
+
+    常见PBX，一般是内部拨打小号，外部电话加拨0或9,创建新的XML文件
+
+    conf/dialplan/default/call_out.xml
+
+        &lt;include&gt;
+
+            &lt;extension name=&quot;call_out&quot;&gt;
+
+                &lt;condition field=&quot;destination_number&quot; expression=&quot;^0(\d+)$&quot;&gt;
+
+                    &lt;action application=&quot;bridge&quot; data=&quot;sofia/gateway/gw1/$1&quot; /&gt;
+
+                &lt;/conditon&gt;
+
+            &lt;/extension&gt;
+
+        &lt;/include&gt;
+
+3.5.2 呼入电话处理
+
+    创建XML，放到conf/dialplan/public/my_did.xml
+
+        &lt;include&gt;
+
+            &lt;extension name=&quot;public_did&quot;&gt;
+
+                &lt;condition field=&quot;destination_number&quot; expression=&quot;^(你的DID)$&quot;&gt;
+
+                    &lt;action application=&quot;transfer&quot; data=&quot;1000 XML default&quot; /&gt;
+
+                &lt;/condition&gt;
+
+            &lt;/extension&gt;
+
+        &lt;/include&gt;
+
+    将来话转接到分机1000上
+</code></pre><h2 id="4-FreeSwitch用作软电话"><a href="#4-FreeSwitch用作软电话" class="headerlink" title="4.FreeSwitch用作软电话"></a>4.FreeSwitch用作软电话</h2><pre><code>可以看作用FreeSWTICH做了一个X-Lite,支持CELT高清通话
+
+使用mod_portaudio模块支持本地的音频设备
+
+安装该模块
+
+make mod_portaudio
+
+makemod_portaudio-install
+
+
+
+1)振铃音
+
+conf/autoload_configs/portaudio.conf.xml将ring-file一行修改为:
+
+&lt;param name=&quot;ring-file&quot; value=&quot;/home/your_name.wav&quot; /&gt;
+
+然后重新加载模块
+
+reloadxml
+
+reload mod_portaudio
+</code></pre><h2 id="5-配置SIP网关拨打外部电话"><a href="#5-配置SIP网关拨打外部电话" class="headerlink" title="5.配置SIP网关拨打外部电话"></a>5.配置SIP网关拨打外部电话</h2><pre><code>如果你拥有某个运营商提供的SIP账号,那么你就可以通过配置SIP拨打外部电话了
+
+该SIP账号在FreeSWTICH中称为SIP网关,
+
+    1.添加一个网关只要在conf/sip_profiles/external/中创建一个xml文件,如gw1.xml
+
+&lt;gateway name=&quot;gw1&quot;&gt;
+
+    &lt;param name=&quot;realm&quot; value=&quot;SIP服务器地址，可以是IP或IP:端口号&quot;/&gt;    &lt;param name=&quot;username&quot; value=&quot;SIP用户名&quot;/&gt;
+
+    &lt;param name=&quot;password&quot; value=&quot;密码&quot;/&gt;
+
+&lt;/gateway&gt;
+
+    2.sofia profile external rescan 重新加载
+
+    3.查看网关状态
+
+    sofia status
+
+
+
+5.1从某一分机上呼出
+
+由于我们把FreeSWITCH当做PBX用,所以需要选出一个出局字冠,常见的PBX一般是内部拨小号,打外部电话加拨0或9,这些你可以自己设置,修改拨号计划,创建新的XML文件,conf/displan/default/call_out.xml
+
+&lt;include&gt;  &lt;extension name=&quot;call out&quot;&gt;
+
+    &lt;condition field=&quot;destination_number&quot; expression=&quot;^0(\d+)$&quot;&gt;
+
+    &lt;action application=&quot;bridge&quot; data=&quot;sofia/gateway/gw1/$1&quot;/&gt;
+
+    &lt;/condition&gt;
+
+    &lt;/extension&gt;
+
+&lt;/include&gt;
+
+^0(\d+)$,\d+匹配0后面的所有数字并保存到变量$1,然后通过bridge程序通过网关gw1打出该号码
+
+
+
+5.2.呼入电话处理
+
+如果你的SIP网关支持DID,那么你需要知道呼入的DID号码,一般来说,呼入DID就是SIP号码,创建一下XML并放到conf/displan/public/my_did.xml
+
+&lt;include&gt;
+
+  &lt;extension name=&quot;public_did&quot;&gt;
+
+    &lt;condition field=&quot;destination_number&quot; expression=&quot;^(5551212)$&quot;&gt;
+
+      &lt;action application=&quot;set&quot; data=&quot;domain_name=$${domain}&quot;/&gt;
+
+      &lt;action application=&quot;transfer&quot; data=&quot;1000 XML default&quot;/&gt;
+
+    &lt;/condition&gt;
+
+  &lt;/extension&gt;
+
+&lt;/include&gt;
+
+来电话直接转接到分机1000上
+
+
+
+5.6.小结
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <!--<a href="/tags/freeswitch/" rel="tag"># freeswitch</a>-->
+            <a href="/tags/freeswitch/" rel="tag"><i class="fa fa-tag"></i> freeswitch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/2017-12-23-7.sip协议/" rel="next" title="7.sip协议">
+                <i class="fa fa-chevron-left"></i> 7.sip协议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/23/2017-12-23-911.sip响应状态码/" rel="prev" title="911.sip响应状态码">
+                911.sip响应状态码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/ichgo.jpg"
+                alt="廖壬" />
+            
+              <p class="site-author-name" itemprop="name">廖壬</p>
+              <p class="site-description motion-element" itemprop="description">Learn to choose, to forsake, to endure loneliness, to resist temptation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">390</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaoren512" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liaoren512@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/5281757990/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是FreeSWITCH"><span class="nav-number">1.</span> <span class="nav-text">1.什么是FreeSWITCH?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-快速体验"><span class="nav-number">2.</span> <span class="nav-text">2.快速体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-连接SIP电话"><span class="nav-number">3.</span> <span class="nav-text">3.连接SIP电话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-FreeSwitch用作软电话"><span class="nav-number">4.</span> <span class="nav-text">4.FreeSwitch用作软电话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-配置SIP网关拨打外部电话"><span class="nav-number">5.</span> <span class="nav-text">5.配置SIP网关拨打外部电话</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廖壬</span>
+
+  
+</div>
+
+<!-- 在网站底部加上访问量-->
+<!--<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>-->
+<!--pv的方式，单个用户连续点击n篇文章，记录n次访问量-->
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

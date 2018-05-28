@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="freeswitch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="搁浅丶岁月的变迁" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.XML DialplanXML Dialplan是一系列XML的配置文件组成, 这些XML可以是静态的, 也可以使动态的  Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定何种动作    1） 配置文件的结构      在Freeswitch.xml中定义          &amp;lt;X-PRE-PROCESS cmd=&amp;quot;include&amp;quot; d">
+<meta name="keywords" content="freeswitch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.拨号计划">
+<meta property="og:url" content="http://yoursite.com/2017/12/23/2017-12-23-6.拨号计划/index.html">
+<meta property="og:site_name" content="搁浅丶岁月的变迁">
+<meta property="og:description" content="1.XML DialplanXML Dialplan是一系列XML的配置文件组成, 这些XML可以是静态的, 也可以使动态的  Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定何种动作    1） 配置文件的结构      在Freeswitch.xml中定义          &amp;lt;X-PRE-PROCESS cmd=&amp;quot;include&amp;quot; d">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-28T08:47:37.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6.拨号计划">
+<meta name="twitter:description" content="1.XML DialplanXML Dialplan是一系列XML的配置文件组成, 这些XML可以是静态的, 也可以使动态的  Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定何种动作    1） 配置文件的结构      在Freeswitch.xml中定义          &amp;lt;X-PRE-PROCESS cmd=&amp;quot;include&amp;quot; d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/23/2017-12-23-6.拨号计划/"/>
+
+
+
+
+
+  <title>6.拨号计划 | 搁浅丶岁月的变迁</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/liaoren512"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">搁浅丶岁月的变迁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">没有虽败犹荣，只有成王败寇。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-6.拨号计划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">6.拨号计划</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-XML-Dialplan"><a href="#1-XML-Dialplan" class="headerlink" title="1.XML Dialplan"></a>1.XML Dialplan</h2><pre><code>XML Dialplan是一系列XML的配置文件组成, 这些XML可以是静态的, 也可以使动态的
+
+Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定何种动作
+
+
+
+1） 配置文件的结构
+
+    在Freeswitch.xml中定义
+
+        &lt;X-PRE-PROCESS cmd=&quot;include&quot; data=&quot;dialplan/*.xml&quot; /&gt;
+
+    每个Context有多个Extension
+
+        Extension的name可以是任意合法字符
+
+        condition可以对一些条件进行判断,满足指定表达式,执行相应Action
+
+    1.Processing说明是处理Dialplan,&lt;1000&gt;主叫号码,1234是被叫号码
+
+    2.parsing 解析XML,根据呼叫来源找到Context
+
+    3.condition条件是否匹配,匹配成功,进入执行阶段
+
+2） 默认的配置文件简介
+
+    default, features, public
+
+    default: 默认的Dialplan, 注册用户都可以通过它打电话
+
+    public: 接收外来呼叫, 外来呼叫不可信, 更严格控制
+
+
+
+3） 正则表达式
+
+    ^1234$:
+
+        ^,开头 $,结尾
+
+    ^1234|5678$:
+
+        |,或
+
+    ^123[0-9]$:
+
+        -,一个区间
+
+    ^123\d$:
+
+        \d,[0-9]
+
+    ^123\d+$:
+
+        +,匹配1个或多个它前面的字符,1230,12300....
+
+    ^123\d*$:
+
+        *,匹配0个或多个它前面的字符,123
+
+    ^123:
+
+        没有$结尾,匹配任何以123开头字符
+
+    123$:
+
+        匹配以123结尾的字符串
+
+    ^123\d{5}$:
+
+        {5},精确匹配5位,包含前面的一个字符,它匹配以123开头的所有8位电话号码
+
+4） 通道变量
+
+    使用info,可以查看所有的通道变量
+
+        &lt;extension name=&quot;Show Channel Variable&quot;&gt;
+
+            &lt;condition field=&quot;destination_number&quot; expression=&quot;^1235|info$&quot;&gt; #呼叫1235或info
+
+                &lt;action application=&quot;info&quot; data=&quot;&quot;/&gt;
+
+            &lt;/condition&gt;
+
+        &lt;/extension&gt;
+
+    所有通道变量都可以在Dialplan中访问,格式是${变量名},${destination_number}
+
+        &lt;action application=&quot;log&quot; data=&quot;INFO I know you called ${destination_number}&quot; /&gt;
+
+    Log级别
+
+        0    CONSOLE
+
+        1    ALERT
+
+        2    CRIT
+
+        3    ERR
+
+        4    WARNING
+
+        5    NOTICE
+
+        6    INFO
+
+        7    DEBUG
+
+    部分通道变量
+
+        state
+
+            当前Channel的状态
+
+        channel_name
+
+            Channel名称
+
+        direction
+
+            呼叫方向
+
+        read_codec
+
+            读Codec
+
+        read_rate
+
+            读采样率
+
+        username
+
+            用户名
+
+        caller_id_name
+
+            主叫名称
+
+        caller_id_number
+
+            主叫号码
+
+        network_addr
+
+            主叫IP
+
+        destination_number
+
+            被叫号码
+
+        uuid
+
+            Channel UUID
+
+        source
+
+            呼叫来源,mod_sofia,mod_freetdm
+
+        context
+
+            Dialplan Context
+
+        rdnis
+
+            原被叫号码,一般用于呼叫转移
+
+        channel_name
+
+            Channel的名字
+
+5） 测试条件
+
+    大部分针对被叫号码, 但也可以针对IP地址
+
+        &lt;condition field=&quot;network_addr&quot; expression=&quot;^192\.168\.7\.7$&quot;&gt;
+
+    测试条件可以迭加
+
+        错误:
+
+        &lt;condition field=&quot;network_addr&quot; expression=&quot;^192\.168\.7\.7$&quot;&gt;
+
+        &lt;condition field=&quot;destination_number&quot; expression=&quot;^1234$&quot;&gt;
+
+            &lt;action application=&quot;log&quot; data=&quot;INFO I know you called ${destination_number}&quot;/&gt;
+
+        &lt;/condition&gt;
+
+        &lt;/condition&gt;
+
+        正确:
+
+        &lt;extension name=&quot;Testing Stacked Conditions&quot;&gt;
+
+            &lt;condition field=&quot;network_addr&quot; expression=&quot;^192\.168\.7\.7$&quot;/&gt;
+
+            &lt;condition field=&quot;destination_number&quot; expression=&quot;^1234$&quot;&gt;
+
+                &lt;action application=&quot;log&quot; data=&quot;INFO Hahaha, I know you called ${destination_ number}&quot;/&gt;
+
+            &lt;/condition&gt;
+
+        &lt;/extension&gt;
+
+6） 动作与反动作
+
+    &lt;extension name=&quot;Anction and Anti-Action&quot;&gt;
+
+        &lt;condition field=&quot;destination_number&quot; expression=&quot;^1234$&quot;/&gt;
+
+        &lt;condition field=&quot;network_addr&quot; expression=&quot;^192\.168\.7\.7$&quot;&gt;
+
+            &lt;action application=&quot;playback&quot; data=&quot;good-morning.wav&quot;/&gt;
+
+            &lt;anti-action application=&quot;playback&quot; data=&quot;good-night.wav&quot;/&gt;
+
+        &lt;/condition&gt;
+
+    &lt;/extension&gt;
+
+    如果呼叫来自192.168.7.7,则播放good-morning.wav,否则播放good-night.wav
+
+7） 工作机制深入剖析
+
+    NEW: 新建一个Channel
+
+    INIT
+
+    ROUTING: 解析Dialplan
+
+    EXECUTE: 执行一系列动作
+
+    HANGUP: 挂机
+
+    REPORTING: 统计,计费
+
+    DESTORY: 销毁,释放资源
+
+8） 内联执行
+
+    把带有set的Action加上 in-line=&quot;true&quot;
+
+        &lt;action inline=&quot;true&quot; application=&quot;set&quot; data=&quot;greeting=no-greeting.wav&quot;/&gt;
+
+    在Hunting阶段,发现带有inline的Action,Freeswitch会直接执行,不用等到Execute
+
+    由于它会打乱执行顺序, 使用不当会产生预期外的结果
+
+9） 实例
+
+    应答类型
+
+        被叫应答
+
+        被叫忙
+
+        被叫无应答
+
+        被叫拒绝
+
+        其他情况
+
+    挂机原因
+
+        NORMAL_RELEASE,正常释放
+
+        USER_BUSY,拒接,忙
+
+        NO_ANSWER,无应答
+
+        NORMAL_TEMPORARY_FAILURE,临时故障
+
+        TIMEOUT,超时,一般是SIP超时
+
+        NO_ROUTE_DESTINATION,呼叫不可达
+
+    回声和延迟
+
+        echo,delay_echo: 让回声有一定延迟
+
+    会议,nb_conference
+
+        &lt;extension name=&quot;nb_conferences&quot;&gt;
+
+            &lt;condition field=&quot;destination_number&quot; expression=&quot;^(30\d{2})$&quot;&gt;
+
+                &lt;action application=&quot;answer&quot; data=&quot;&quot;/&gt;
+
+                &lt;action application=&quot;conference&quot; data=&quot;$1-${domain_name}@default&quot;/&gt;
+
+            &lt;/condition&gt;
+
+        &lt;/extension&gt;
+
+        所有呼叫30xx的电话均可加入一个会议
+
+        假设呼叫3000,IP是192.168.7.2
+
+            3000-192.168.7.2@default
+
+            3000-IP是会议室的名字,@default表示一个会议的profile
+</code></pre><h2 id="2-inline-Dialplan"><a href="#2-inline-Dialplan" class="headerlink" title="2.inline Dialplan"></a>2.inline Dialplan</h2><pre><code>内联拨号,在测试或编写程序时,经常用到一些临时或简单的 Dialplan,每次修改XML,效率太低
+
+    短小,轻便的Dialplan更高效的完成任务,动态生成Dialplan,无需使用reloadxml
+
+直接在命令行写inline Dialplan
+
+    originate user/1000 echo inline
+
+    originate user/1000 answer,echo inline
+</code></pre><h2 id="3-其他Dialplan"><a href="#3-其他Dialplan" class="headerlink" title="3.其他Dialplan"></a>3.其他Dialplan</h2><pre><code>show dialplan
+</code></pre><h2 id="4-常用的Dialplan-App"><a href="#4-常用的Dialplan-App" class="headerlink" title="4.常用的Dialplan App"></a>4.常用的Dialplan App</h2><pre><code>1） set
+
+    设置一个通道变量
+
+    &lt;action application=&quot;set&quot; data=&quot;my_var=1234&quot;/&gt;
+
+2） echo
+
+    回声,调试用
+
+    &lt;action application=&quot;echo&quot;/&gt;
+
+3） info
+
+    打印通道变量
+
+    &lt;action application=&quot;info&quot;/&gt;
+
+4） answer
+
+    应答一路呼叫
+
+    &lt;action application=&quot;answer&quot;/&gt;
+
+5） bridge
+
+    负责桥接另一路腿,阻塞操作,直到b-leg释放才继续往下走
+
+    &lt;action application=&quot;bridge&quot; data=&quot;user/1000&quot;&gt;
+
+6） playback
+
+    给Channel放音,对主叫放音
+
+    &lt;action appliaction=&quot;playback&quot; data=&quot;/tmp/test.wav&quot;/&gt;
+
+    &lt;action appliaction=&quot;playback&quot; data=&quot;/tmp/test2.wav&quot;/&gt;
+
+    串联
+
+    &lt;action application=&quot;playback&quot; data=&quot;file_string:///tmp/test.wav!/tmp/test2.wav&quot;/&gt;
+
+    远程HTTP
+
+    &lt;action application=&quot;playback&quot; data=&quot;http://loaclhost/test.mp3&quot;/&gt;
+
+    中断播放,用户按*号键停止
+
+7） sleep
+
+    设置等待/暂停的一段时间,默认毫秒
+
+    &lt;action application=&quot;sleep&quot; data=&quot;1000&quot;/&gt;
+
+8） ring_ready
+
+    用于在SIP中给对方回180消息,通知对方振铃
+
+    &lt;action application=&quot;ring_ready&quot; data=&quot;1000&quot;/&gt;
+
+9） pre_answer
+
+    用于在SIP给对方回183消息,后续的play-back如彩铃
+
+    &lt;action application=&quot;ring-ready&quot; data=&quot;1000&quot;/&gt;
+
+    &lt;action application=&quot;playback&quot; data=&quot;/tmp/music.wav&quot;/&gt;
+
+10） read
+
+    实现播放声音并且等待接受DTMF
+
+11） play_and_get_digits
+
+    比read更高级
+</code></pre><h2 id="5-在Dialplan使用API命令"><a href="#5-在Dialplan使用API命令" class="headerlink" title="5.在Dialplan使用API命令"></a>5.在Dialplan使用API命令</h2><h2 id="6-深入理解通道变量及相关操作"><a href="#6-深入理解通道变量及相关操作" class="headerlink" title="6.深入理解通道变量及相关操作"></a>6.深入理解通道变量及相关操作</h2><pre><code>set对单腿赋值
+
+    &lt;action application=&quot;set&quot; data=&quot;my_var=123&quot;/&gt;
+
+export对a,b腿同时赋值(即使b不存在)
+
+    &lt;action application=&quot;export&quot; data=&quot;my_var=123&quot;/&gt;
+
+截取Variable值的部分操作
+
+${var:位置:长度}
+
+    ${var} #原始变量值:1234567890
+
+    ${var:1} 234567890
+
+    ${var:4:2} 56
+
+    ${var:-4:2} 78
+</code></pre><h2 id="7-小结"><a href="#7-小结" class="headerlink" title="7.小结"></a>7.小结</h2><pre><code>拨号计划三个核心要素:
+
+    Dialplan,Context和Extension
+
+拨号计划最终目的就是为了给我们返回一组App以及它们的参数
+
+    实际呼叫的应答,放音,收号,录音都是由这些APP控制
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <!--<a href="/tags/freeswitch/" rel="tag"># freeswitch</a>-->
+            <a href="/tags/freeswitch/" rel="tag"><i class="fa fa-tag"></i> freeswitch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/2017-12-23-902.安装FreeSWITCH & fusionpbx/" rel="next" title="902.安装FreeSWITCH & fusionpbx">
+                <i class="fa fa-chevron-left"></i> 902.安装FreeSWITCH & fusionpbx
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/23/2017-12-23-901.freeswitch常用命令/" rel="prev" title="901.freeswitch常用命令">
+                901.freeswitch常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/ichgo.jpg"
+                alt="廖壬" />
+            
+              <p class="site-author-name" itemprop="name">廖壬</p>
+              <p class="site-description motion-element" itemprop="description">Learn to choose, to forsake, to endure loneliness, to resist temptation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">390</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaoren512" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liaoren512@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/5281757990/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-XML-Dialplan"><span class="nav-number">1.</span> <span class="nav-text">1.XML Dialplan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-inline-Dialplan"><span class="nav-number">2.</span> <span class="nav-text">2.inline Dialplan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-其他Dialplan"><span class="nav-number">3.</span> <span class="nav-text">3.其他Dialplan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-常用的Dialplan-App"><span class="nav-number">4.</span> <span class="nav-text">4.常用的Dialplan App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-在Dialplan使用API命令"><span class="nav-number">5.</span> <span class="nav-text">5.在Dialplan使用API命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-深入理解通道变量及相关操作"><span class="nav-number">6.</span> <span class="nav-text">6.深入理解通道变量及相关操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-小结"><span class="nav-number">7.</span> <span class="nav-text">7.小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>-->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廖壬</span>
+
+  
+</div>
+
+<!-- 在网站底部加上访问量-->
+<!--<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>-->
+<!--pv的方式，单个用户连续点击n篇文章，记录n次访问量-->
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
