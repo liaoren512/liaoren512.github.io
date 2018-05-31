@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-904.卡顿/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-11.基本功能与实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-904.卡顿/" itemprop="url">904.卡顿</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-11.基本功能与实现/" itemprop="url">11.基本功能与实现</a></h1>
         
 
         <div class="post-meta">
@@ -397,18 +397,15 @@
       
         
           
-          1.iLBC: 抗丢包,绝大多数情况下都是最佳选择打包周期越短, 延迟越小, 相对开销越大, 需要更大带宽
+          1.批量创建用户用户配置文件在conf/directory/default/目录下, 每个用户对应一个XML配置文件
 
-打包周期越长, 延迟越大, 丢包语音影响就越大
+Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用户如2000,只需以1000位模板, 将该文件复制到1020.xml
 
-reload mod_ilbc
-2.媒体绕过+手机录音真正的媒体流使用点到点传输, 不经过Freeswitch
-
-Freeswitch正常建
+把1020.xml中出现
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-904.卡顿/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-11.基本功能与实现/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -463,7 +460,7 @@ Freeswitch正常建
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-902.安装FreeSWITCH & fusionpbx/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -482,7 +479,7 @@ Freeswitch正常建
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-902.安装FreeSWITCH & fusionpbx/" itemprop="url">902.安装FreeSWITCH & fusionpbx</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/" itemprop="url">912.阿里云 安装freeswtich</a></h1>
         
 
         <div class="post-meta">
@@ -565,178 +562,12 @@ Freeswitch正常建
       
         
           
-          安装
-1.yum 安装FreeSWITCHyum -y update
-
-yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release
-
-yum install -y freeswit
+          阿里云ecs服务器目前还不支持ipv6，安装freeswitch提示event socket listen port 8021 ipv6
+event_socket.conf.xml12345678910&lt;configuration name="event_socket.conf" descri
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-902.安装FreeSWITCH & fusionpbx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-901.freeswitch常用命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-901.freeswitch常用命令/" itemprop="url">901.freeswitch常用命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.检索在线用户fs_cli -x &quot;sofia status profile internal reg&quot; | grep &quot;MWI-Account&quot;
-2.清理注册的用户fs_cli -x &quot;sofia profile internal flush_i
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-901.freeswitch常用命令/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -905,177 +736,6 @@ yum install -y freeswit
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/23/2017-12-23-8.媒体/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-6.拨号计划/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-6.拨号计划/" itemprop="url">6.拨号计划</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.XML DialplanXML Dialplan是一系列XML的配置文件组成, 这些XML可以是静态的, 也可以使动态的
-
-Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定何种动作
-
-
-
-1） 配置文件的结构
-
-    在Freeswitch.xml中定义
-
- 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-6.拨号计划/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1305,175 +965,6 @@ Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-12.高级功能与配置实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-12.高级功能与配置实例/" itemprop="url">12.高级功能与配置实例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          2.使用mod_callcenter实现呼叫中心应用mod_callcenter采用一种基于积分策略的排队算法, 用户在队列中每等待1s, 积分加1,它实现了多级的梯队, 允许具有不同技能的坐席通过不同的优先级对用户提供服务
-
-
-
-1)模块简介
-
-    编译安装
-
-        make mod
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-12.高级功能与配置实例/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-5.freeswitch架构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1585,6 +1076,179 @@ Freeswitch通过解析相关的结构, 对Dialplan进行路由的呼叫, 决定�
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/12/23/2017-12-23-5.freeswitch架构/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-4.运行freeswitch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-4.运行freeswitch/" itemprop="url">4.运行freeswitch</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.命令行参数1） freeswitch -help
+
+    -nf        不允许Fork新进程
+
+    -u        启动后以非root用户运行
+
+    -g        启动后以非root组运行
+
+    -help    帮助信息
+
+    -version 版本信息
+
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/2017-12-23-4.运行freeswitch/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1806,7 +1470,7 @@ PSTN: Public Switched Telephone Network
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/2017-12-06-ADB常用命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-15.其他技巧与实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -1825,7 +1489,7 @@ PSTN: Public Switched Telephone Network
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/06/2017-12-06-ADB常用命令/" itemprop="url">ADB常用命令</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-15.其他技巧与实例/" itemprop="url">15.其他技巧与实例</a></h1>
         
 
         <div class="post-meta">
@@ -1837,8 +1501,8 @@ PSTN: Public Switched Telephone Network
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T00:00:00+08:00">
-                2017-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
               </time>
             
 
@@ -1908,14 +1572,361 @@ PSTN: Public Switched Telephone Network
       
         
           
-          
-最近更新: 常用命令增加，忽略特殊文件。
+          Freeswitch功能非常多, 还有一些常用功能
+企业常用的电话转接, 代接等
 
-常用命令1234567891011121314151617181920212223242526272829301.通过包名启动apk    adb shell monkey -p 包名 -c android.intent.category.LAUNCHE
+压力测试, 安全等
+1.转接和代接来电转接分
+
+    盲转(Blind Transfer)
+
+    协商转(Attended Transfer)
+
+盲转:
+
+    将来电直接转到某一分机, 用于电话已经接听的情
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/06/2017-12-06-ADB常用命令/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-15.其他技巧与实例/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-12.高级功能与配置实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-12.高级功能与配置实例/" itemprop="url">12.高级功能与配置实例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          2.使用mod_callcenter实现呼叫中心应用mod_callcenter采用一种基于积分策略的排队算法, 用户在队列中每等待1s, 积分加1,它实现了多级的梯队, 允许具有不同技能的坐席通过不同的优先级对用户提供服务
+
+
+
+1)模块简介
+
+    编译安装
+
+        make mod
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/2017-12-23-12.高级功能与配置实例/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-10.基本技能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-10.基本技能/" itemprop="url">10.基本技能</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.调试与排错根据问题现象, 系统提供的日志, 线索等查找原因
+
+1）解决问题的一般方法和流程
+
+    发现问题, 定位问题, 分析问题, 解决问题
+
+    Alice告诉我们, 她通过Freeswitch呼叫Bob, 能打通,但没有声音
+
+        首先, 两端都听不到, 还是一方没有声
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/2017-12-23-10.基本技能/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2011,7 +2022,7 @@ PSTN: Public Switched Telephone Network
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">389</span>
+                  <span class="site-state-item-count">390</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

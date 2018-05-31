@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-scp免密码传输/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-md5 authentication failed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-scp免密码传输/" itemprop="url">scp免密码传输</a></h1>
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-md5 authentication failed/" itemprop="url">md5 authentication failed</a></h1>
         
 
         <div class="post-meta">
@@ -397,15 +397,14 @@
       
         
           
-          配置ssh信任访问                        
-主机：    172.17.254.90                
-cd ~/.ssh                    
-ssh-keygen -t rsa                    
-cat id_rsa.
+          Unable to connect to server:
+ERROR: md5 authentication failed
+DETAIL: password does not match
+1.执行sql语句,获取用户md5select rolname,rolpassword from pg_auth
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-scp免密码传输/#more" rel="contents">
+            <a class="btn" href="/2017/12/25/2017-12-25-md5 authentication failed/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -460,7 +459,7 @@ cat id_rsa.
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-pgpool添加用户/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-linux无法登陆，显示module is unknown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -479,7 +478,7 @@ cat id_rsa.
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-pgpool添加用户/" itemprop="url">pgpool添加用户</a></h1>
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-linux无法登陆，显示module is unknown/" itemprop="url">linux无法登陆，显示module is unknown</a></h1>
         
 
         <div class="post-meta">
@@ -562,18 +561,16 @@ cat id_rsa.
       
         
           
-          1.pgpool添加用户cd /etc/pgpool-II
+          1.进入救援模式http://www.linuxidc.com/Linux/2015-03/114942.htm
+2.查看logcat /var/log/security
 
-vi pool_passwd
-2.执行sql语句,获取md5select rolname,rolpassword from pg_authid
+---
 
-vi pool_passwd
-
-    appforpacer:md5e72cd3feac7
+PAM [error: /lib/security/pam_limits.so: wrong ELF class: 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-pgpool添加用户/#more" rel="contents">
+            <a class="btn" href="/2017/12/25/2017-12-25-linux无法登陆，显示module is unknown/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -628,7 +625,7 @@ vi pool_passwd
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-proxool简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-ndk是什么/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -647,7 +644,7 @@ vi pool_passwd
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-proxool简介/" itemprop="url">proxool简介</a></h1>
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-ndk是什么/" itemprop="url">ndk是什么</a></h1>
         
 
         <div class="post-meta">
@@ -730,193 +727,16 @@ vi pool_passwd
       
         
           
-          Proxool是一种Java数据库连接池技术
-易用，简装的连接池
+          1.NDK是什么?NDK(Native Development Kit)
 
-提供监控功能，便于发现连接泄露
-1.proxool.xml文件alias：    别名
+1)提供了一系列工具,帮助开发者开发C(C++)的动态库,并将so和java应用打包生成apk
 
-driver-url：    url连接串
-
-driver-class：    驱动类
-
-property
-
-    user        
+2)集成了交叉编译器,提供相应的mk文件隔离CPU,平台差异,开发人员只要简单修改mk文件,就可以创建so
+2.好处?Java
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-proxool简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-sql转psql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-sql转psql/" itemprop="url">sql转psql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T00:00:00+08:00">
-                2017-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.日期转换CONVERT(VARCHAR(10),GetDate(),23))
-
-to_char(now(),yyyy-MM-dd)
-
-extract(year from now());
-2.日期加减表示三天后
-
-select now() + interval 3 day;
-
-select to_
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-sql转psql/#more" rel="contents">
+            <a class="btn" href="/2017/12/25/2017-12-25-ndk是什么/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1140,7 +960,7 @@ select to_
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-tomcat manager/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-scp免密码传输/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -1159,7 +979,7 @@ select to_
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-tomcat manager/" itemprop="url">tomcat manager</a></h1>
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-scp免密码传输/" itemprop="url">scp免密码传输</a></h1>
         
 
         <div class="post-meta">
@@ -1242,15 +1062,381 @@ select to_
       
         
           
-          在无需关闭或重启整个容器的情况下,部署新的Web应用或取消现有应用的部署
-或者,在Tomcat配置文件中没有指定reloadable的情况下,也可以请求重新加载现有应用
-Tomcat中的Web应用Manager就是解决这些问题,默认安装在上线文路径:/manager中
-
-    用已上传的WAR文件
+          配置ssh信任访问                        
+主机：    172.17.254.90                
+cd ~/.ssh                    
+ssh-keygen -t rsa                    
+cat id_rsa.
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-tomcat manager/#more" rel="contents">
+            <a class="btn" href="/2017/12/25/2017-12-25-scp免密码传输/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-sql psql数据类型对比/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-sql psql数据类型对比/" itemprop="url">sql psql数据类型对比</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T00:00:00+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+
+数据类型
+SQL Server
+PostgreSQL
+备注
+
+
+
+
+数字型
+
+
+
+tinyint
+smallint
+tinyint(0-255),smallint(-32768-32767)
+
+
+
+smallint
+smallint,int2
+int2是smallint别名
+
+
+
+int
+in
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/2017-12-25-sql psql数据类型对比/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-nginx基本设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-nginx基本设置/" itemprop="url">nginx基本设置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T00:00:00+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          #运行用户
+
+user nobody;
+
+#启动进程,通常设置成和cpu的数量相等
+
+worker_processes  1;
+
+
+
+#全局错误日志及PID文件
+
+#error_log  logs/error.log;
+
+#error_log  logs/error.log  notice;
+
+#e
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/25/2017-12-25-nginx基本设置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1468,7 +1654,7 @@ Tomcat中的Web应用Manager就是解决这些问题,默认安装在上线文路
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-tomcat简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-sql转psql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -1487,7 +1673,7 @@ Tomcat中的Web应用Manager就是解决这些问题,默认安装在上线文路
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-tomcat简介/" itemprop="url">tomcat简介</a></h1>
+                <a class="post-title-link" href="/2017/12/25/2017-12-25-sql转psql/" itemprop="url">sql转psql</a></h1>
         
 
         <div class="post-meta">
@@ -1570,180 +1756,20 @@ Tomcat中的Web应用Manager就是解决这些问题,默认安装在上线文路
       
         
           
-          对应系统管理员及Web开发者来说,在学习tomcat之前应该熟悉一些重要内容
-1.术语Context, 上下文就是指Web应用程序
+          1.日期转换CONVERT(VARCHAR(10),GetDate(),23))
 
-Term2 术语2
+to_char(now(),yyyy-MM-dd)
 
-Term3 术语3
-2.目录文件$CATALINA_HOME,Tomcat安装的根目录
+extract(year from now());
+2.日期加减表示三天后
 
-/bin:    存放用于启动及关闭的文件,以及其他脚
+select now() + interval 3 day;
+
+select to_
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-tomcat简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-tomcat自检/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/25/2017-12-25-tomcat自检/" itemprop="url">tomcat自检</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T00:00:00+08:00">
-                2017-12-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#!/bin/bash## /etc/rc.d/init.d/tomcat# in
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/25/2017-12-25-tomcat自检/#more" rel="contents">
+            <a class="btn" href="/2017/12/25/2017-12-25-sql转psql/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2002,7 +2028,7 @@ Term3 术语3
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">389</span>
+                  <span class="site-state-item-count">390</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
