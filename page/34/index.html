@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-11.基本功能与实现/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-7.sip协议/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -314,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-11.基本功能与实现/" itemprop="url">11.基本功能与实现</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-7.sip协议/" itemprop="url">7.sip协议</a></h1>
         
 
         <div class="post-meta">
@@ -397,15 +397,23 @@
       
         
           
-          1.批量创建用户用户配置文件在conf/directory/default/目录下, 每个用户对应一个XML配置文件
+          1.SIP协议基础会话初始协议,一个控制发起,修改和终结交互式多媒体会话的信令协议
 
-Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用户如2000,只需以1000位模板, 将该文件复制到1020.xml
+1） HTTP与SIP协议基础
 
-把1020.xml中出现
+    HTTP:
+
+        GET /index.html HTTP/1.1
+
+        GET
+
+            获取资源的动作
+
+        /in
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-11.基本功能与实现/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-7.sip协议/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -460,7 +468,7 @@ Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-913.常用配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -479,7 +487,7 @@ Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/" itemprop="url">912.阿里云 安装freeswtich</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-913.常用配置/" itemprop="url">913.常用配置</a></h1>
         
 
         <div class="post-meta">
@@ -562,355 +570,17 @@ Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用
       
         
           
-          阿里云ecs服务器目前还不支持ipv6，安装freeswitch提示event socket listen port 8021 ipv6
-event_socket.conf.xml12345678910&lt;configuration name="event_socket.conf" descri
-          ...
+          freeswitch通话质量调查
+freeswitch媒体绕过修改internal.xml
+&lt;param name=&quot;inbound-bypass-media&quot; value=&quot;true&quot;/&gt;
+媒体协商
+
+录音
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-912.阿里云 安装freeswtich/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-8.媒体/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-8.媒体/" itemprop="url">8.媒体</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SIP信令, 帮我们建立会话, 但我们建立通话的目的是”通话”
-要通过采样, 量化, 编码将我们声音的模块量变成数字信号,
-以便在数字线路上传输, 我们把这些数字信号成为媒体(Media)
-1.媒体与媒体处理常见媒体有音频, 视频, 图像, 文本等,
-
-1） 音频编码
-
-    从模拟信号变成数字信
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-8.媒体/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-3.初识freeswitch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廖壬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/ichgo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="搁浅丶岁月的变迁">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-3.初识freeswitch/" itemprop="url">3.初识freeswitch</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1.什么是FreeSWITCH?1.1.FreeSWITCH概念
-
-开源的电话交换平台.
-
-    跨平台
-
-    可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能
-
-    免费
-
-    支持SIP,H323,Skype,Google
-
-    Talk等多种通信协议
-
-1.2.Free
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-3.初识freeswitch/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-913.常用配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1303,7 +973,7 @@ event_socket.conf.xml12345678910&lt;configuration name="event_socket.conf" descr
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-1.PSTN与VoIP基础/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-3.初识freeswitch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -1322,7 +992,7 @@ event_socket.conf.xml12345678910&lt;configuration name="event_socket.conf" descr
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/2017-12-23-1.PSTN与VoIP基础/" itemprop="url">1.PSTN与VoIP基础</a></h1>
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-3.初识freeswitch/" itemprop="url">3.初识freeswitch</a></h1>
         
 
         <div class="post-meta">
@@ -1405,17 +1075,25 @@ event_socket.conf.xml12345678910&lt;configuration name="event_socket.conf" descr
       
         
           
-          VoIP: Voice Over IP
-IP网上的语音通信.
-PSTN: Public Switched Telephone Network
-公共交换电话网,我们日常打电话所使用的网络
-1.1 PSTN起源与发展1)最早的电话网
+          1.什么是FreeSWITCH?1.1.FreeSWITCH概念
 
-    振铃电话: 用户之间用物理线路连接,并且同一时间只能有一个用
+开源的电话交换平台.
+
+    跨平台
+
+    可伸缩: 从软电话客户端到运营商用的软交换几乎无所不能
+
+    免费
+
+    支持SIP,H323,Skype,Google
+
+    Talk等多种通信协议
+
+1.2.Free
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/23/2017-12-23-1.PSTN与VoIP基础/#more" rel="contents">
+            <a class="btn" href="/2017/12/23/2017-12-23-3.初识freeswitch/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1812,6 +1490,171 @@ PSTN: Public Switched Telephone Network
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-11.基本功能与实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/2017-12-23-11.基本功能与实现/" itemprop="url">11.基本功能与实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:00:00+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.批量创建用户用户配置文件在conf/directory/default/目录下, 每个用户对应一个XML配置文件
+
+Freeswitch默认提供了1000~1019这20个用户, 如果手动创建另一个用户如2000,只需以1000位模板, 将该文件复制到1020.xml
+
+把1020.xml中出现
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/2017-12-23-11.基本功能与实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/2017-12-23-10.基本技能/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1968,6 +1811,175 @@ PSTN: Public Switched Telephone Network
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/06/2017-12-06-Git基本用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廖壬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/ichgo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="搁浅丶岁月的变迁">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/06/2017-12-06-Git基本用法/" itemprop="url">Git基本用法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T00:00:00+08:00">
+                2017-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+最近更新: 常用命令增加，忽略特殊文件。
+
+对Git的学习，整理，还有对Git的理解。
+常用命令1.本地命令
+
+全局变量 
+
+12git config --global user.name "liaoren"git config --global user.email "liaoren512@gm
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/06/2017-12-06-Git基本用法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2022,7 +2034,7 @@ PSTN: Public Switched Telephone Network
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">390</span>
+                  <span class="site-state-item-count">389</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2033,7 +2045,7 @@ PSTN: Public Switched Telephone Network
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2044,7 +2056,7 @@ PSTN: Public Switched Telephone Network
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
