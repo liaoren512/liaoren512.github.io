@@ -460,7 +460,7 @@ yum install -y openssl-devel
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-vue_3.条件与循环/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -479,7 +479,7 @@ yum install -y openssl-devel
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/" itemprop="url">vue_4.添加一个事件监听器</a></h1>
+                <a class="post-title-link" href="/2017/12/28/2017-12-28-vue_3.条件与循环/" itemprop="url">vue_3.条件与循环</a></h1>
         
 
         <div class="post-meta">
@@ -562,14 +562,16 @@ yum install -y openssl-devel
       
         
           
-          处理用户输入v-on 指令添加一个事件监听器
-&lt;div id=&quot;app-5&quot;&gt;
-  &lt;p&gt;{ { message } }&lt;/p&gt;
-  &lt;button v-on:click=&quot;reverseMessage&quot;&gt;逆转消
+          v-if控制切换一个元素是否显示也相当简单
+&lt;div id=&quot;app-3&quot;&gt;
+  &lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;
+&lt;/div&gt;
+var app3 = new Vue({
+  el: &apo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/#more" rel="contents">
+            <a class="btn" href="/2017/12/28/2017-12-28-vue_3.条件与循环/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -789,7 +791,7 @@ v-bind
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-startup_tomcat/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-vue_1.起步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -808,7 +810,7 @@ v-bind
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/28/2017-12-28-startup_tomcat/" itemprop="url">startup_tomcat</a></h1>
+                <a class="post-title-link" href="/2017/12/28/2017-12-28-vue_1.起步/" itemprop="url">vue_1.起步</a></h1>
         
 
         <div class="post-meta">
@@ -891,11 +893,13 @@ v-bind
       
         
           
-          1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#!/bin/bash## /etc/rc.d/init.d/tomcat# in
+          引入vue&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt;
+声明式渲染打开你的浏览器的控制台，并修改 app.message 的值，你将看到相应地更新
+12345678910&lt;div i
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/2017-12-28-startup_tomcat/#more" rel="contents">
+            <a class="btn" href="/2017/12/28/2017-12-28-vue_1.起步/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -950,7 +954,7 @@ v-bind
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-vue_3.条件与循环/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -969,7 +973,7 @@ v-bind
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/28/2017-12-28-vue_3.条件与循环/" itemprop="url">vue_3.条件与循环</a></h1>
+                <a class="post-title-link" href="/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/" itemprop="url">vue_4.添加一个事件监听器</a></h1>
         
 
         <div class="post-meta">
@@ -1052,16 +1056,14 @@ v-bind
       
         
           
-          v-if控制切换一个元素是否显示也相当简单
-&lt;div id=&quot;app-3&quot;&gt;
-  &lt;p v-if=&quot;seen&quot;&gt;现在你看到我了&lt;/p&gt;
-&lt;/div&gt;
-var app3 = new Vue({
-  el: &apo
+          处理用户输入v-on 指令添加一个事件监听器
+&lt;div id=&quot;app-5&quot;&gt;
+  &lt;p&gt;{ { message } }&lt;/p&gt;
+  &lt;button v-on:click=&quot;reverseMessage&quot;&gt;逆转消
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/28/2017-12-28-vue_3.条件与循环/#more" rel="contents">
+            <a class="btn" href="/2017/12/28/2017-12-28-vue_4.添加一个事件监听器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1999,7 +2001,7 @@ yum -y install zlib zlib-devel openssl openssl--devel pcre pcre-devel
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

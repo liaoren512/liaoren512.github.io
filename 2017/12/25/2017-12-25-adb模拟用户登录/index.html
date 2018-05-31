@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="ADB," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="插入数据线,执行adb tcpip 5555">
-<meta name="keywords" content="android">
+<meta name="description" content="1.登录adb -s 10.6.4.136 shell input tap 360 720 sleep 1 2.手入力adb  -s 10.6.4.136 shell input tap 360 700 adb  -s 10.6.4.136 shell input text &amp;quot;10085467&amp;quot; adb  -s 10.6.4.136 shell input tap 600 12">
+<meta name="keywords" content="ADB">
 <meta property="og:type" content="article">
-<meta property="og:title" content="adb connect 连接失败">
-<meta property="og:url" content="http://yoursite.com/2017/12/25/2017-12-25-adb connect 连接失败/index.html">
+<meta property="og:title" content="adb模拟用户登录">
+<meta property="og:url" content="http://yoursite.com/2017/12/25/2017-12-25-adb模拟用户登录/index.html">
 <meta property="og:site_name" content="搁浅丶岁月的变迁">
-<meta property="og:description" content="插入数据线,执行adb tcpip 5555">
+<meta property="og:description" content="1.登录adb -s 10.6.4.136 shell input tap 360 720 sleep 1 2.手入力adb  -s 10.6.4.136 shell input tap 360 700 adb  -s 10.6.4.136 shell input text &amp;quot;10085467&amp;quot; adb  -s 10.6.4.136 shell input tap 600 12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-28T08:47:29.658Z">
+<meta property="og:updated_time" content="2018-05-31T07:43:24.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="adb connect 连接失败">
-<meta name="twitter:description" content="插入数据线,执行adb tcpip 5555">
+<meta name="twitter:title" content="adb模拟用户登录">
+<meta name="twitter:description" content="1.登录adb -s 10.6.4.136 shell input tap 360 720 sleep 1 2.手入力adb  -s 10.6.4.136 shell input tap 360 700 adb  -s 10.6.4.136 shell input text &amp;quot;10085467&amp;quot; adb  -s 10.6.4.136 shell input tap 600 12">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/25/2017-12-25-adb connect 连接失败/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/25/2017-12-25-adb模拟用户登录/"/>
 
 
 
 
 
-  <title>adb connect 连接失败 | 搁浅丶岁月的变迁</title>
+  <title>adb模拟用户登录 | 搁浅丶岁月的变迁</title>
   
 
 
@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-adb connect 连接失败/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/25/2017-12-25-adb模拟用户登录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廖壬">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">adb connect 连接失败</h1>
+          <h1 class="post-title" itemprop="name headline">adb模拟用户登录</h1>
         
 
         <div class="post-meta">
@@ -335,6 +335,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -399,8 +421,19 @@
       
 
       
-        <p>插入数据线,执行adb tcpip 5555</p>
-
+        <h3 id="1-登录"><a href="#1-登录" class="headerlink" title="1.登录"></a>1.登录</h3><pre><code>adb -s 10.6.4.136 shell input tap 360 720
+sleep 1
+</code></pre><h3 id="2-手入力"><a href="#2-手入力" class="headerlink" title="2.手入力"></a>2.手入力</h3><pre><code>adb  -s 10.6.4.136 shell input tap 360 700
+adb  -s 10.6.4.136 shell input text &quot;10085467&quot;
+adb  -s 10.6.4.136 shell input tap 600 1250
+adb  -s 10.6.4.136 shell input text &quot;zyg122401&quot;
+adb  -s 10.6.4.136 shell input tap 600 1250
+sleep 1
+</code></pre><h3 id="3-退出"><a href="#3-退出" class="headerlink" title="3.退出"></a>3.退出</h3><pre><code>adb  -s 10.6.4.136 shell input tap 600 1100
+adb  -s 10.6.4.136 shell input tap 250 800
+sleep 1
+echo 1
+</code></pre>
       
     </div>
     
@@ -428,8 +461,8 @@
       
         <div class="post-tags">
           
-            <!--<a href="/tags/android/" rel="tag"># android</a>-->
-            <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
+            <!--<a href="/tags/ADB/" rel="tag"># ADB</a>-->
+            <a href="/tags/ADB/" rel="tag"><i class="fa fa-tag"></i> ADB</a>
           
         </div>
       
@@ -532,8 +565,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -574,7 +616,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -632,6 +674,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-登录"><span class="nav-number">1.</span> <span class="nav-text">1.登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-手入力"><span class="nav-number">2.</span> <span class="nav-text">2.手入力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-退出"><span class="nav-number">3.</span> <span class="nav-text">3.退出</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
